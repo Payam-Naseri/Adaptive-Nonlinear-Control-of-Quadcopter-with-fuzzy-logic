@@ -2,7 +2,7 @@ clc
 clear
 %% Planner
 
-Tfinal = 10;
+Tfinal = 10;  % Simulation time (s)
 
 % slctr = randi([1 2],1,1); % Selects shape of reference signal
 slctr = 1;
