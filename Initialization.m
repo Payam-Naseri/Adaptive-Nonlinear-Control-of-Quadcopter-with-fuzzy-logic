@@ -7,17 +7,19 @@ Tfinal = 10;
 % slctr = randi([1 2],1,1); % Selects shape of reference signal
 slctr = 1;
 w = [1 1 0.5];
-% X0 = (rand(1,3)*2 + 0.1).*(-1*ones(1,3)).^(randi([1 2],1,3));
+% X0 = (rand(1,3)*2 + 0.1).*(-1*ones(1,3)).^(randi([1 2],1,3)); % Reference position in slctr = 2 mode
 X0 = [5 5 10];
 
 
 %% Parameters of Drone
+g = 9.8; 
+mass = 0.65;  % Mass of drone (kg)
 
-g = 9.8;
-mass = 0.65; %kg
-Ix = 7.5e-3;
+% Moment of inertia
+Ix = 7.5e-3;  
 Iy = 7.5e-3;
 Iz = 1.3e-2;
+
 Jr = 6e-5; % rotor inertia
 l = 0.23; % arm length
 
@@ -291,7 +293,8 @@ beta_phi = beta; beta_theta = beta; beta_psi = beta;
 fis_theta = addRule(fis_theta,rules);
 fis_phi = addRule(fis_phi,rules);
 
-%% plot 2d position
+%% Results
+% Altitude 
 x_ref=out.ref.Data(:,1);
 y_ref=out.ref.Data(:,2);
 z_ref=out.ref.Data(:,3);
@@ -333,7 +336,7 @@ legend('Reference Position','Quadcopter trajectory')
 %     drawnow
 % end
 
-%%
+%% Results with presence of disturbance
 time = out.tout;
 phi = out.phi.Data(:,1); phi_ref = out.phi.Data(:,2);
 theta = out.theta.Data(:,1); theta_ref = out.theta.Data(:,2);
